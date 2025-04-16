@@ -28,23 +28,23 @@ const RegistrationForm = () => {
     setErrorMessage('');
     
     try {
-      // This is where we send the data to our JSON server
+      console.log('Submitting form data:', formData);
+      
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          ...formData,
-          registrationDate: new Date().toISOString()
-        })
+        body: JSON.stringify(formData)
       });
       
-      if (!response.ok) {
-        throw new Error('Error submitting form');
+      const result = await response.json();
+      console.log('API response:', result);
+      
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Error submitting form');
       }
       
-      // Reset the form
       setFormData({
         firstName: '',
         lastName: '',
@@ -56,14 +56,13 @@ const RegistrationForm = () => {
       
       setSubmitSuccess(true);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error during form submission:', error);
       setErrorMessage('There was an error submitting your registration. Please try again later.');
     }
     
     setIsSubmitting(false);
   };
 
-  // The rest of your component remains the same
   
   return (
     <section id="register" className="py-20 bg-primary bg-opacity-90">
