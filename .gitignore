@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# JSON Server data
-db.json
+# Vercel
+.vercel
