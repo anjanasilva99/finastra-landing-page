@@ -31,12 +31,12 @@ const RegistrationForm = () => {
       console.log('Submitting form data:', formData);
       
       const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
       
       const result = await response.json();
       console.log('API response:', result);

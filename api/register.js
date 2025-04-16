@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-
 export default async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -32,10 +29,10 @@ export default async function handler(req, res) {
       });
     }
     
-    // For Vercel serverless functions, instead of writing to filesystem,
-    // let's simply return success since we can't reliably write files
+    // Log the data for debugging
     console.log('Registration received:', data);
     
+    // Return success response
     return res.status(200).json({ 
       success: true, 
       message: 'Registration successful',
